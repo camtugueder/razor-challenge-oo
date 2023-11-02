@@ -2,4 +2,4 @@
 
 docker="$(which docker)"
 
-${docker} run --rm -it --entrypoint bash ruby-exercise:develop
+${docker} run --rm -it -v $(pwd):/ruby-exercise --entrypoint bash ruby-exercise:develop
