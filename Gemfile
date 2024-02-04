@@ -4,6 +4,7 @@ source "https://rubygems.org"
 ruby "2.7.5"
 
 gem "activerecord", "~> 6.0.0"
+gem "activerecord-import"
 gem "faraday"
 gem "sqlite3", "~> 1.4.0"
 
