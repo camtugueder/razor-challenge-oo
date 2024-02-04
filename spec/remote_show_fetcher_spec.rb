@@ -15,4 +15,24 @@ RSpec.describe RemoteShowFetcher do
       end
     end
   end
+  context "when the remote API returns a 500 error" do
+    around do |example|
+      VCR.turn_off!
+      example.run
+      VCR.turn_on!
+    end
+    before do
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.get('https://shows-remote-api.com') { [500, {}, 'Internal Server Error'] }
+      end
+      Faraday.default_connection = Faraday.new do |builder|
+        builder.adapter :test, stubs
+      end
+    end
+    it "handles the error gracefully" do
+      expect { RemoteShowFetcher.fetch_data }.not_to raise_error
+      data = RemoteShowFetcher.fetch_data
+      expect(data).to eq([])
+    end
+  end
 end
