@@ -20,7 +20,12 @@ RSpec.describe Scheduler do
     end
 
     it "orchestrates components to find shows to update and calculate the schedule" do
-      scheduler = Scheduler.new
+      scheduler = Scheduler.new(
+        LocalShowFetcher,
+        RemoteShowFetcher,
+        ShowUpdater,
+        ScheduleCalculator
+      )
       expect(scheduler.shows_to_update.sort).to eq(needs_updating.sort)
       expect(scheduler.schedule_show_updates).to eq(updates_hash)
     end
@@ -36,7 +41,12 @@ RSpec.describe Scheduler do
     end
 
     it "orchestrates components to find shows to update and calculate the schedule" do
-      scheduler = Scheduler.new
+      scheduler = Scheduler.new(
+        LocalShowFetcher,
+        RemoteShowFetcher,
+        ShowUpdater,
+        ScheduleCalculator
+      )
       expect(scheduler.shows_to_update.sort).to eq(needs_updating.sort)
       expect(scheduler.schedule_show_updates).to eq(updates_hash)
     end
@@ -52,7 +62,12 @@ RSpec.describe Scheduler do
     end
 
     it "orchestrates components to find shows to update and calculate the schedule" do
-      scheduler = Scheduler.new
+      scheduler = Scheduler.new(
+        LocalShowFetcher,
+        RemoteShowFetcher,
+        ShowUpdater,
+        ScheduleCalculator
+      )
       expect(scheduler.shows_to_update.sort).to eq(needs_updating.sort)
       expect(scheduler.schedule_show_updates).to eq(updates_hash)
     end
